@@ -1,0 +1,236 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="emp.master.cs" Inherits="mca.Employeee.emp" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Recruiter Dashboard</title>
+    <link rel="stylesheet" href="~/employeee/assets/css/style.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <svg width="0" height="0" style="display: none;">
+                    <symbol id="icon-search" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd" />
+                    </symbol>
+                    <symbol id="icon-bell" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                    </symbol>
+                    <symbol id="icon-menu" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                            clip-rule="evenodd" />
+                    </symbol>
+                    <symbol id="icon-briefcase" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M6 2a2 2 0 00-2 2v1H2.5A1.5 1.5 0 001 6.5v8A1.5 1.5 0 002.5 16h15A1.5 1.5 0 0019 14.5v-8A1.5 1.5 0 0017.5 5H16V4a2 2 0 00-2-2H6zM6 4h8v1H6V4zm-1 5v.5A1.5 1.5 0 006.5 11h7A1.5 1.5 0 0015 9.5V9H5z"
+                            clip-rule="evenodd" />
+                    </symbol>
+                    <symbol id="icon-users" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0110 13a5 5 0 01-1.5-4.33A6.97 6.97 0 007 16c0 .34.024.673.07 1H2a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1v-1a1 1 0 00-1-1h-5.07z" />
+                    </symbol>
+                    <symbol id="icon-pending" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 10.586V6z"
+                            clip-rule="evenodd" />
+                    </symbol>
+                    <symbol id="icon-hired" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd" />
+                    </symbol>
+                </svg>
+
+                <nav class="navbar">
+                    <div class="nav-container">
+                        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                            <svg width="24" height="24">
+                                <use href="#icon-menu"></use>
+                            </svg>
+                        </button>
+                        <a href="emp_home.aspx" class="nav-brand">JobBoard Pro</a>
+                        <ul class="nav-links">
+                            <li><a href="emp_home.aspx" class="active">Dashboard</a></li>
+                            <li><a href="jobs.aspx">Jobs</a></li>
+                            <li><a href="applicants.aspx">Applicants</a></li>
+                            <li><a href="messages.aspx">Messages</a></li>
+                            <li><a href="analytics.aspx">Analytics</a></li>
+                        </ul>
+                        <div class="nav-actions">
+                            <div class="search-bar">
+                                <svg width="18" height="18">
+                                    <use href="#icon-search"></use>
+                                </svg>
+                                <input type="text" placeholder="Search...">
+                            </div>
+                            <button class="icon-button">
+                                <svg width="22" height="22">
+                                    <use href="#icon-bell"></use>
+                                </svg>
+                            </button>
+                            <a rel="jobpost" href="jobpost.aspx" class="post-job-btn" id="post-job-btn" style="text-decoration: none;">Post a New Job</a>
+                            <div class="profile-menu">
+                                <div class="profile-avatar" id="profile-avatar">AD</div>
+                                <div class="profile-dropdown" id="profile-dropdown">
+                                    <a href="#">Signed in as <strong>Recruiter</strong></a>
+                                    <div class="divider"></div>
+                                    <a href="#">Your Profile</a>
+                                    <a href="#">Settings</a>
+                                    <div class="divider"></div>
+                                    <a href="#">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile-nav-menu" id="mobile-nav-menu">
+                        <a href="emp_home.aspx">Dashboard</a>
+                        <a href="jobs.html">Jobs</a>
+                        <a href="applicants.html">Applicants</a>
+                        <a href="messages.html">Messages</a>
+                        <a href="analytics.html">Analytics</a>
+                    </div>
+                </nav>
+            </asp:ContentPlaceHolder>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                <main class="main-content">
+                    <div class="container">
+                        <header class="main-header">
+                            <h1>Welcome Back, Recruiter!</h1>
+                            <p>Here's what's happening with your job postings today.</p>
+                        </header>
+
+                        <section class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon blue">
+                                    <svg width="24" height="24">
+                                        <use href="#icon-briefcase"></use>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Active Jobs</h3>
+                                    <span class="stat-number">12</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon green">
+                                    <svg width="24" height="24">
+                                        <use href="#icon-users"></use>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>New Applicants</h3>
+                                    <span class="stat-number">64</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon orange">
+                                    <svg width="24" height="24">
+                                        <use href="#icon-pending"></use>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Pending Reviews</h3>
+                                    <span class="stat-number">8</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon red">
+                                    <svg width="24" height="24">
+                                        <use href="#icon-hired"></use>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Hired This Month</h3>
+                                    <span class="stat-number">3</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="content-card">
+                            <div class="content-card-header">
+                                <h3>Recent Applicants</h3>
+                                <a href="#" style="text-decoration: none; font-weight: 500;">View All</a>
+                            </div>
+                            <div class="table-wrapper">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Applying For</th>
+                                            <th>Date Applied</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Alex Johnson</td>
+                                            <td>Senior Frontend Developer</td>
+                                            <td>2025-11-03</td>
+                                            <td><span class="status pending">Pending</span></td>
+                                            <td class="action-buttons">
+                                                <button>View</button>
+                                                <button>Message</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Maria Garcia</td>
+                                            <td>UX/UI Designer</td>
+                                            <td>2025-11-02</td>
+                                            <td><span class="status interview">Interview</span></td>
+                                            <td class="action-buttons">
+                                                <button>View</button>
+                                                <button>Message</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>David Kim</td>
+                                            <td>Full-Stack Engineer</td>
+                                            <td>2025-11-01</td>
+                                            <td><span class="status hired">Hired</span></td>
+                                            <td class="action-buttons">
+                                                <button>View</button>
+                                                <button>Message</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sarah Chen</td>
+                                            <td>Product Manager</td>
+                                            <td>2025-11-01</td>
+                                            <td><span class="status interview">Interview</span></td>
+                                            <td class="action-buttons">
+                                                <button>View</button>
+                                                <button>Message</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+            </asp:ContentPlaceHolder>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                <footer class="site-footer">
+                    <div class="container">
+                        <p>&copy; 2025 JobBoard Pro. All rights reserved.</p>
+                        <nav class="footer-nav">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Contact</a>
+                        </nav>
+                    </div>
+                </footer>
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

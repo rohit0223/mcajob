@@ -1,0 +1,1206 @@
+/* --- 1. Global & Font Styles --- */
+:root {
+    --primary-color: #005A9C; /* A deeper, more professional blue */
+    --primary-light: #E6F0F6;
+    --text-color: #0B1C33;
+    --text-secondary: #5A6B82;
+    --bg-color: #F7F9FC;
+    --nav-bg: #FFFFFF;
+    --border-color: #E4E9F0;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* --- 2. Main Navigation Bar --- */
+.navbar {
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.nav-brand {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-right: 25px;
+}
+
+/* --- 2a. Nav Links (Desktop) --- */
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+    .nav-links li a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: color 0.3s;
+        padding-bottom: 5px;
+        border-bottom: 2px solid transparent;
+    }
+
+        .nav-links li a:hover {
+            color: var(--text-color);
+        }
+
+        .nav-links li a.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+/* --- 2b. Nav Right-Side (Actions) --- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color);
+    border-radius: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--border-color);
+}
+
+    .search-bar svg {
+        color: var(--text-secondary);
+    }
+
+    .search-bar input {
+        background: none;
+        border: none;
+        outline: none;
+        margin-left: 8px;
+        font-size: 0.9rem;
+    }
+
+.post-job-btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+    .post-job-btn:hover {
+        background-color: #004578;
+        box-shadow: 0 4px 10px rgba(0, 90, 156, 0.2);
+    }
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+}
+
+    .icon-button:hover {
+        color: var(--text-color);
+    }
+
+.profile-menu {
+    position: relative;
+}
+
+.profile-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+}
+
+.profile-dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: var(--nav-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    width: 200px;
+    overflow: hidden;
+    z-index: 1001;
+    animation: fadeIn 0.2s ease;
+}
+
+    .profile-dropdown.open {
+        display: block; /* Show with JS */
+    }
+
+    .profile-dropdown a {
+        display: block;
+        padding: 12px 15px;
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 0.9rem;
+    }
+
+        .profile-dropdown a:hover {
+            background-color: var(--bg-color);
+        }
+
+    .profile-dropdown .divider {
+        height: 1px;
+        background-color: var(--border-color);
+        margin: 5px 0;
+    }
+
+/* --- 2c. Mobile Menu --- */
+.mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Mobile Nav Menu Dropdown */
+.mobile-nav-menu {
+    display: none; /* Hidden by default */
+    background-color: var(--nav-bg);
+    width: 100%;
+    position: absolute;
+    top: 67px; /* Height of navbar */
+    left: 0;
+    box-shadow: var(--shadow-md);
+    border-top: 1px solid var(--border-color);
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+}
+
+    .mobile-nav-menu.open {
+        display: block; /* Show with JS */
+    }
+
+    .mobile-nav-menu a {
+        display: block;
+        padding: 15px 30px;
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+        .mobile-nav-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav-menu a:hover {
+            background-color: var(--bg-color);
+        }
+
+
+/* --- 3. Main Content Area --- */
+.main-content {
+    padding: 35px 0;
+}
+
+.main-header {
+    margin-bottom: 30px;
+}
+
+    .main-header h1 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .main-header p {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+/* --- 4. Stat Cards --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+    }
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+    .stat-icon.blue {
+        background-color: #E6F0F6;
+        color: #005A9C;
+    }
+
+    .stat-icon.green {
+        background-color: #E4F8F0;
+        color: #27AE60;
+    }
+
+    .stat-icon.orange {
+        background-color: #FFF4E5;
+        color: #F2994A;
+    }
+
+    .stat-icon.red {
+        background-color: #FDEEEE;
+        color: #EB5757;
+    }
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.stat-card .stat-number {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* --- 5. Main Content Cards (Table) --- */
+.content-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    padding: 30px;
+}
+
+.content-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .content-card-header h3 {
+        font-size: 1.25rem;
+        margin: 0;
+    }
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+    .data-table th,
+    .data-table td {
+        text-align: left;
+        padding: 15px 12px;
+        border-bottom: 1px solid var(--border-color);
+        vertical-align: middle;
+    }
+
+    .data-table th {
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+    }
+
+    .data-table tbody tr:hover {
+        background-color: var(--bg-color);
+    }
+
+.status {
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+    .status.pending {
+        background-color: #FFF4E5;
+        color: #F2994A;
+    }
+
+    .status.interview {
+        background-color: #E6F0F6;
+        color: #005A9C;
+    }
+
+    .status.hired {
+        background-color: #E4F8F0;
+        color: #27AE60;
+    }
+
+.action-buttons button {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: all 0.3s;
+}
+
+    .action-buttons button:hover {
+        background-color: var(--bg-color);
+        border-color: #ccc;
+    }
+
+/* --- 6. Modal (Pop-up) --- */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+    .modal-overlay.open {
+        display: flex; /* Show with JS */
+    }
+
+.modal-content {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    animation: slideUp 0.3s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .modal-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.modal-body form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-body .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.modal-body input,
+.modal-body textarea {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+.modal-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+    .modal-footer button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        border: none;
+    }
+
+.btn-secondary {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* --- 7. Animations --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* --- 8. Responsive Design --- */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none; /* Hide desktop links */
+    }
+
+    .search-bar {
+        display: none; /* Hide search bar */
+    }
+
+    .mobile-menu-toggle {
+        display: block; /* Show hamburger menu */
+    }
+
+    .nav-brand {
+        margin: 0;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-actions {
+        gap: 10px;
+    }
+
+    .post-job-btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .profile-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .main-header p {
+        font-size: 1rem;
+    }
+}
+
+/* --- 10. Applicant Page Enhancements --- */
+
+.applicant-list-container {
+    display: grid;
+    /* This grid is responsive: 1 or 2 columns */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+}
+
+.applicant-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+    .applicant-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+    }
+
+.applicant-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.applicant-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.applicant-info {
+    flex-grow: 1;
+}
+
+.applicant-name {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.applicant-role {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.applicant-header .status {
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.applicant-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    padding-left: 65px; /* Aligns with info block */
+}
+
+    .applicant-details span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+.applicant-actions {
+    margin-top: auto; /* Pushes buttons to the bottom */
+    display: flex;
+    gap: 10px;
+    padding-left: 65px; /* Aligns with info block */
+}
+
+    /* Use the same button style from the job cards */
+    .applicant-actions button {
+        background: none;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+        .applicant-actions button:hover {
+            background-color: var(--bg-color);
+            border-color: #ccc;
+        }
+
+/* --- Responsive adjustments for new cards --- */
+@media (max-width: 576px) {
+    .applicant-list-container {
+        grid-template-columns: 1fr;
+    }
+
+    .applicant-details,
+    .applicant-actions {
+        padding-left: 0; /* Remove alignment padding on mobile */
+    }
+
+    .applicant-header {
+        flex-wrap: wrap; /* Allow status to wrap */
+    }
+
+        .applicant-header .status {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 10px;
+            text-align: center;
+        }
+}
+
+/* --- 11. Messages Page Layout --- */
+
+/* We need a full-height layout, so we adjust html/body */
+html, body {
+    height: 100%;
+}
+
+/* Special main-content container for chat page.
+  It removes padding and stretches to fill the viewport.
+*/
+.main-content-full {
+    height: calc(100vh - 68px); /* Full viewport height minus navbar */
+    padding: 0;
+}
+
+.chat-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+/* --- 11a. Chat Sidebar (Contacts) --- */
+.chat-sidebar {
+    width: 340px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+    .chat-sidebar-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+.chat-list {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.chat-contact {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s;
+}
+
+    .chat-contact:hover {
+        background-color: var(--bg-color);
+    }
+
+    .chat-contact.active {
+        background-color: var(--primary-light);
+    }
+
+    /* Using applicant-avatar style from previous page */
+    .chat-contact .applicant-avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+        margin-right: 12px;
+    }
+
+.contact-info {
+    flex-grow: 1;
+    overflow: hidden; /* Prevents long text from breaking layout */
+}
+
+.contact-name {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.contact-preview {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-time {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-left: 10px;
+}
+
+/* --- 11b. Chat Window (Conversation) --- */
+.chat-window {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+    .chat-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+    }
+
+    .chat-header p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+.chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 30px;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.message-day {
+    text-align: center;
+    margin: 10px 0 20px;
+}
+
+    .message-day span {
+        background: var(--border-color);
+        color: var(--text-secondary);
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+.message {
+    max-width: 70%;
+    margin-bottom: 15px;
+    animation: fadeIn 0.3s;
+}
+
+    .message p {
+        padding: 12px 18px;
+        border-radius: 18px;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+.message-time {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+.message.received {
+    align-self: flex-start;
+}
+
+    .message.received p {
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-top-left-radius: 0;
+    }
+
+    .message.received .message-time {
+        padding-left: 5px;
+    }
+
+.message.sent {
+    align-self: flex-end;
+}
+
+    .message.sent p {
+        background-color: var(--primary-color);
+        color: #fff;
+        border-top-right-radius: 0;
+    }
+
+    .message.sent .message-time {
+        text-align: right;
+        padding-right: 5px;
+    }
+
+/* --- 11c. Chat Input Area --- */
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    border-top: 1px solid var(--border-color);
+    background-color: #fff;
+}
+
+    .chat-input-area input {
+        flex-grow: 1;
+        height: 45px;
+        border: 1px solid var(--border-color);
+        border-radius: 22px;
+        padding: 0 20px;
+        font-size: 1rem;
+        margin: 0 10px;
+    }
+
+        .chat-input-area input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+.send-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+    .send-btn:hover {
+        background-color: #004578;
+    }
+
+/* --- 11d. Messages Responsive --- */
+@media (max-width: 992px) {
+    /* On tablets and smaller, hide the sidebar */
+    .chat-sidebar {
+        display: none;
+        /* In a real app, JS would make this show */
+    }
+
+    .chat-container {
+        border-left: none;
+        border-right: none;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Adjust padding for small screens */
+    .chat-header, .chat-input-area {
+        padding: 15px;
+    }
+
+    .chat-messages {
+        padding: 15px;
+    }
+
+    .send-btn span {
+        display: none; /* Hide 'Send' text, show icon only */
+    }
+
+    .send-btn {
+        padding: 10px;
+        border-radius: 50%;
+    }
+
+    .chat-input-area input {
+        margin: 0 8px;
+    }
+}
+
+/* --- 12. Analytics Page Enhancements --- */
+
+.analytics-grid {
+    display: grid;
+    /* This grid is responsive: 1 or 2 columns */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+/* --- Applicant Funnel --- */
+.funnel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.funnel-step {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+    .funnel-step:hover {
+        background-color: var(--bg-color);
+    }
+
+.funnel-step-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-right: 15px;
+}
+
+.funnel-step-info h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.funnel-step-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* --- Applicant Sources (Bar Chart) --- */
+.source-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.source-item h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+    .source-item h4 .percent {
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+.source-bar-bg {
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.source-bar {
+    height: 100%;
+    border-radius: 10px;
+    animation: slideIn 1s ease-out;
+}
+
+/* Animation for the bar chart */
+@keyframes slideIn {
+    from {
+        width: 0 !important;
+    }
+
+    to { /* width is set inline */
+    }
+}
+
+/* --- 13. Site Footer --- */
+
+.site-footer {
+    padding: 30px 0;
+    background-color: var(--nav-bg); /* Use white like the navbar */
+    border-top: 1px solid var(--border-color);
+    margin-top: 35px; /* Space above the footer */
+}
+
+    .site-footer .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; /* For mobile */
+        gap: 15px;
+    }
+
+    .site-footer p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+    }
+
+.footer-nav {
+    display: flex;
+    gap: 20px;
+}
+
+    .footer-nav a {
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: var(--text-secondary);
+        transition: color 0.3s;
+    }
+
+        .footer-nav a:hover {
+            color: var(--primary-color);
+        }
+
+/* Responsive for footer */
+@media (max-width: 576px) {
+    .site-footer .container {
+        flex-direction: column; /* Stack on mobile */
+        justify-content: center;
+    }
+}
+/* --- 14. Post Job Page Enhancements --- */
+
+/* Style for the group headings in the form */
+.modal-body h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: 5px;
+}
+
+    /* First h3 shouldn't have a top margin */
+    .modal-body h3:first-of-type {
+        margin-top: 0;
+    }
+
+/* New row class for side-by-side fields */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Make form elements full-width by default */
+.modal-body input,
+.modal-body textarea,
+.modal-body select {
+    width: 100%;
+}
+
+/* Add styling for the <select> element */
+.modal-body select {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+/* Add styling for file input to match others */
+.modal-body input[type="file"] {
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+/* Responsive for the form row */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr; /* Stack fields on mobile */
+        gap: 15px;
+    }
+}

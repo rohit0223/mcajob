@@ -1,0 +1,2 @@
+﻿insert into Job_tbl (Title,Post,Description,Qulification,Exprience,LastDate,Salary,JobType,CompanyName,CompanyImage,Website,Email,Address,Contry,State) values
+('dfgd','dfg','dfg','dfg','dfg','dfg','dfg','dg,','rty','rtysd','trye','ere','erte','sdf','eryrh')

@@ -1,0 +1,148 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="project.Admin.Admin" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Portal Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                margin: 0 1em;
+            }
+
+        .container {
+            padding: 2em;
+        }
+
+        .dashboard {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .job-form {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 1em;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <header>
+                    <h1>Job Portal Admin</h1>
+                    <nav>
+                        <a href="Admin.aspx">Dashboard</a>
+                        <a href="NewJob.aspx">Add New Job</a>
+                        <a href="JobList.aspx">Job List</a>
+                        <a href="UserDetails.aspx">Manage User</a>
+                        <a href="ContactDetails.aspx">Contact Details</a>
+                        <asp:LinkButton ID="logout" runat="server" OnClick="logout_Click">Log Out</asp:LinkButton>
+                    </nav>
+                </header>
+            </asp:ContentPlaceHolder>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+
+
+                <div class="container">
+                    <div class="dashboard">
+                        <h2>Dashboard</h2>
+                        <p>Welcome, Admin!</p>
+
+                    </div>
+                </div>
+            </asp:ContentPlaceHolder>
+
+            <%-- <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                <footer>
+                    <p>&copy; 2024 . All rights reserved.</p>
+                </footer>
+            </asp:ContentPlaceHolder>--%>
+        </div>
+    </form>
+</body>
+</html>
