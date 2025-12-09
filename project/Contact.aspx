@@ -15,8 +15,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>qw
         </div>
+    </div>
     </div>
     <!-- Hero Area End -->
 
@@ -33,7 +34,7 @@
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+                                                </div>
         <!-- ================= end map iframe ================= -->
 
         <div class="container">
@@ -48,6 +49,7 @@
                 </div>
 
                 <div class="col-lg-8">
+                    <%--<form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">--%>
                     <div class="form-contact contact_form" id="contactForm" novalidate="novalidate">
                         <div class="row">
                             <div class="col-12">
@@ -81,6 +83,7 @@
                         <div class="form-group mt-3">
                             <asp:Button ID="btbSend" runat="server" CssClass="button button-contactForm boxed-btn" Text="Send" OnClick="btbSend_Click" />
                         </div>
+                        <%--</form>--%>
                     </div>
                 </div>
 
@@ -128,54 +131,58 @@
     </div>
 
     <!-- Header Start -->
-    <header>
-        <div class="header-area header-transparrent">
-            <div class="headder-top header-sticky">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-2">
-                            <div class="logo">
+                <header>
+                    <!-- Header Start -->
+                    <div class="header-area header-transparrent">
+                        <div class="headder-top header-sticky">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 col-md-2">
+                                        <!-- Logo -->
+                                        <div class="logo">
                                 <a href="Default.aspx"><img src="../assets/img/logo/logo.png" alt="" /></a>
-                            </div>
-                        </div>
+                                        </div>
+                                    </div>
 
-                        <div class="col-lg-9 col-md-9">
-                            <div class="menu-wrapper">
-                                <div class="main-menu">
-                                    <nav class="d-none d-lg-block">
-                                        <ul id="navigation">
-                                            <li><a href="Default.aspx">Home</a></li>
-                                            <li><a href="JobListing.aspx">Find a Jobs </a></li>
-                                            <li><a href="About.aspx">About</a></li>
-                                            <li><a href="#">Page</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Elements</a></li>
+                                    <div class="col-lg-9 col-md-9">
+                                        <div class="menu-wrapper">
+                                            <!-- Main-menu -->
+                                            <div class="main-menu">
+                                                <nav class="d-none d-lg-block">
+                                                    <ul id="navigation">
+                                                        <li><a href="Default.aspx">Home</a></li>
+                                                        <li><a href="JobListing.aspx">Find a Jobs </a></li>
+                                                        <li><a href="About.aspx">About</a></li>
+                                                        <li><a href="#">Page</a>
+                                                            <ul class="submenu">
+                                                                <li><a href="blog.html">Blog</a></li>
+                                                                <li><a href="single-blog.html">Blog Details</a></li>
+                                                                <li><a href="elements.html">Elements</a></li>
                                                     <li><a href="JobDetails.aspx">Job Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="Contact.aspx">Contact</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="Contact.aspx">Contact</a></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
 
-                                <div class="header-btn d-none f-right d-lg-block">
+                                            <div class="header-btn d-none f-right d-lg-block">
                                     <asp:LinkButton ID="btn1" runat="server" CssClass="btn head-btn1" CausesValidation="false" Text="Register" OnClick="btn1_Click" />
                                     <asp:LinkButton ID="btn2" runat="server" CssClass="btn head-btn2" CausesValidation="false" Text="Login" OnClick="btn2_Click" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
     </header>
-    <!-- Header End -->
+                    <!-- Header End -->
+                </header>
 </asp:Content>
 
 

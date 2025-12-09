@@ -5,6 +5,7 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
     <main>
+
         <!-- Hero Area Start-->
         <div class="slider-area ">
             <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
@@ -24,6 +25,9 @@
         <div class="job-post-company pt-120 pb-120">
             <div class="container">
                 <asp:Label ID="lblmsg" runat="server" Text="Job Applied Successfully...." Font-Bold="true" ForeColor="Green" Font-Size="15" Visible="false"></asp:Label>
+
+                <%--   <asp:DataList ID="DataList1" runat="server" >
+                    <ItemTemplate>--%>
 
                 <div class="row justify-content-between">
                     <!-- Left Content -->
@@ -74,9 +78,10 @@
                                 </div>
                                 <asp:Literal ID="litExperience" runat="server" />
                             </div>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
                         <div class="post-details3  mb-50">
@@ -112,9 +117,12 @@
                     </div>
                 </div>
 
+                <%--  </ItemTemplate>
+                </asp:DataList>--%>
             </div>
         </div>
         <!-- job post company End -->
+
     </main>
 </asp:Content>
 

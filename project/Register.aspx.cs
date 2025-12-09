@@ -18,6 +18,19 @@ namespace project
 
         }
 
+        public void startcon()
+        {
+            con = new SqlConnection();
+            cs = new Class1();
+            cs.getcon();
+        }
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            startcon();
+            cs.insert_User(txtUserName.Text, txtPassword.Text, txtFullName.Text, txtAddress.Text, txtMobile.Text, txtEmail.Text, ddlContry.SelectedValue);
+            lblmsg.Visible = true;
+            lblmsg.Text = "registration successfully ...";
+        }
         private void clear()
         {
             txtUserName.Text = "";
@@ -27,63 +40,6 @@ namespace project
             txtAddress.Text = "";
             txtMobile.Text = "";
             txtEmail.Text = "";
-            ddlContry.SelectedIndex = 0;
-        }
-
-        protected void BtnUser_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection con = new SqlConnection(connString))
-            {
-                string q = @"INSERT INTO User_tbl 
-                            (UserName,Password,Name,Address,Mobile,Email,Country)
-                            VALUES (@u,@p,@n,@a,@m,@e,@c)";
-
-                using (SqlCommand cmd = new SqlCommand(q, con))
-                {
-                    cmd.Parameters.AddWithValue("@u", txtUserName.Text.Trim());
-                    cmd.Parameters.AddWithValue("@p", txtPassword.Text.Trim());
-                    cmd.Parameters.AddWithValue("@n", txtFullName.Text.Trim());
-                    cmd.Parameters.AddWithValue("@a", txtAddress.Text.Trim());
-                    cmd.Parameters.AddWithValue("@m", txtMobile.Text.Trim());
-                    cmd.Parameters.AddWithValue("@e", txtEmail.Text.Trim());
-                    cmd.Parameters.AddWithValue("@c", ddlContry.SelectedValue);
-
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            lblmsg.Visible = true;
-            lblmsg.Text = "User registration successful!";
-            clear();
-        }
-
-        protected void BtnRecuiter_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection con = new SqlConnection(connString))
-            {
-                string q = @"INSERT INTO Employers_tbl 
-                            (UserName,Password,FullName,Address,Mobile,Email,Country)
-                            VALUES (@u,@p,@n,@a,@m,@e,@c)";
-
-                using (SqlCommand cmd = new SqlCommand(q, con))
-                {
-                    cmd.Parameters.AddWithValue("@u", txtUserName.Text.Trim());
-                    cmd.Parameters.AddWithValue("@p", txtPassword.Text.Trim());
-                    cmd.Parameters.AddWithValue("@n", txtFullName.Text.Trim());
-                    cmd.Parameters.AddWithValue("@a", txtAddress.Text.Trim());
-                    cmd.Parameters.AddWithValue("@m", txtMobile.Text.Trim());
-                    cmd.Parameters.AddWithValue("@e", txtEmail.Text.Trim());
-                    cmd.Parameters.AddWithValue("@c", ddlContry.SelectedValue);
-
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            lblmsg.Visible = true;
-            lblmsg.Text = "Recruiter registration successful!";
-            clear();
         }
     }
 }

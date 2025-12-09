@@ -8,6 +8,8 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace project
 {
@@ -16,6 +18,7 @@ namespace project
         string connString = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         int pageSize = 5; // 5 jobs per page
 
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -65,7 +68,7 @@ namespace project
             {
                 if (ddlSort.Items.FindByValue(sort) != null)
                     ddlSort.SelectedValue = sort;
-            }
+        }
 
             // choose ORDER BY clause
             // NOTE: TRY_CAST requires SQL Server 2012+. If not supported, change to "Salary" only.
@@ -79,10 +82,13 @@ namespace project
             int totalRecords = 0;
             using (SqlConnection con = new SqlConnection(connString))
             using (SqlCommand cmdCount = new SqlCommand("SELECT COUNT(*) FROM Job_tbl", con))
-            {
-                con.Open();
+        {
+            con = new SqlConnection();
+            job = new joblisting();
+            job.getcon();
+            con.Open();
                 totalRecords = Convert.ToInt32(cmdCount.ExecuteScalar());
-            }
+        }
 
             int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
             if (totalPages == 0) totalPages = 1;
@@ -96,7 +102,7 @@ namespace project
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connString))
             using (SqlCommand cmd = new SqlCommand(q, con))
-            {
+        {
                 cmd.Parameters.AddWithValue("@Offset", offset);
                 cmd.Parameters.AddWithValue("@PageSize", pageSize);
 

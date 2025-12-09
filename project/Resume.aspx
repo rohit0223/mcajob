@@ -68,6 +68,8 @@
                                 </div>
                             </div>
 
+
+
                             <div class="col-12">
                                 <h6>Education Information</h6>
                             </div>
@@ -118,7 +120,6 @@
                             <!-- Resume Upload -->
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <asp:Label ID="Label16" runat="server" Text="Resume (pdf/doc)"></asp:Label>
                                     <asp:FileUpload ID="resume" runat="server" CssClass="form-control pt-2" />
                                 </div>
                             </div>
@@ -142,6 +143,7 @@
             </div>
         </div>
     </section>
+   
 </asp:Content>
 
 <asp:Content ID="Content3" runat="server" contentplaceholderid="ContentPlaceHolder1">

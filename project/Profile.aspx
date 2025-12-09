@@ -19,6 +19,7 @@
         }
     </style>
 </asp:Content>
+<asp:Content ID="Content5" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
     <asp:Label ID="lblmsg" runat="server" Visible="false"></asp:Label>
@@ -36,25 +37,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="align-items-left text-center">
-
-                                        <!-- image bound to Photo (ShowUserProfile resolves virtual path) -->
-                                        <asp:Image ID="imgUserPhoto" runat="server"
-                                            CssClass="img-square"
-                                            ImageUrl='<%# Eval("Photo") == DBNull.Value || Eval("Photo")==null || String.IsNullOrEmpty(Eval("Photo").ToString()) ? "assets/img/blog/author.png" : Eval("Photo") %>'
-                                            AlternateText="UserPic" />
-
                                         <div class="mt-3">
-                                            <asp:Label ID="Label1" CssClass="text-capitalize" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
-                                            <p class="text-secondary">@
-                                                <asp:Label ID="Label5" runat="server" Text='<%# Eval("UserName") %>'></asp:Label></p>
-                                            <p><i class="fas fa-map-marker-alt"></i>
-                                                <asp:Label ID="Label6" runat="server" Text='<%# Eval("Country") %>'></asp:Label></p>
 
-                                            <!-- hidden FileUpload & hidden button (both inside item so file is available on postback) -->
-                                            <asp:FileUpload ID="fuChangePhoto" runat="server" Style="display: none" />
-                                            <asp:Button ID="btnHiddenUpload" runat="server" Style="display: none"
-                                                CommandName="cmd_changephoto"
-                                                CommandArgument='<%# Eval("UserId") %>' />
                                         </div>
                                     </div>
                                 </div>
@@ -73,6 +57,7 @@
                                             <asp:Label ID="Label8" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
                                         </div>
                                     </div>
+
                                     <hr />
 
                                     <div class="row">
@@ -83,6 +68,7 @@
                                             <asp:Label ID="Label9" runat="server" Text='<%# Eval("Email") %>'></asp:Label>
                                         </div>
                                     </div>
+
                                     <hr />
 
                                     <div class="row">
@@ -93,6 +79,7 @@
                                             <asp:Label ID="Label10" runat="server" Text='<%# Eval("Mobile") %>'></asp:Label>
                                         </div>
                                     </div>
+
                                     <hr />
 
                                     <div class="row">
@@ -103,6 +90,7 @@
                                             <asp:Label ID="Label11" runat="server" Text='<%# Eval("Address") %>'></asp:Label>
                                         </div>
                                     </div>
+
                                     <hr />
 
                                     <div class="row">
@@ -110,18 +98,6 @@
                                             <h6 class="mb-0">Resume</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary text-capitalize">
-                                            <%-- <asp:Label ID="Label7" runat="server"
-                                                       Text='<%# Eval("Resume") == DBNull.Value || Eval("Resume")==null || String.IsNullOrEmpty(Eval("Resume").ToString()) ? "Not Uploaded" : "Uploaded" %>'></asp:Label>--%>
-                                            <div class="profile-action-links mt-1">
-                                                <%# (Eval("Resume") != DBNull.Value && Eval("Resume") != null && !String.IsNullOrEmpty(Eval("Resume").ToString())) ?
-          String.Format("<a class='btn btn-sm btn-outline-info' href='{0}' target='_blank'>View Resume</a>", Eval("Resume"))
-          : "" %>
-                                            </div>
-                                            <%--  <div class="profile-action-links mt-2">
-                                                <%# (Eval("Resume") != DBNull.Value && Eval("Resume") != null && !String.IsNullOrEmpty(Eval("Resume").ToString())) ?
-                                                    String.Format("<a class='btn btn-sm btn-outline-info' href='{0}' target='_blank'>View Resume</a> <a class='btn btn-sm btn-outline-secondary' href='{0}' download>Download</a>", Eval("Resume"))
-                                                    : "" %>
-                                            </div>--%>
                                         </div>
                                     </div>
 
@@ -129,9 +105,6 @@
 
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <asp:Button ID="btnEdt1" runat="server" Text="Edit"
-                                                CssClass="button button-contactForm boxed btn"
-                                                CommandArgument='<%# Eval("UserId") %>' CommandName="cmd_edt" />
                                         </div>
                                     </div>
 
@@ -143,9 +116,9 @@
             </asp:DataList>
         </div>
     </div>
+   
 </asp:Content>
 
-<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">

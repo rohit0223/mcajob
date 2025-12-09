@@ -43,7 +43,7 @@
                                 </div>
                             </div>
 
-
+                      
                             <div class="col-12">
                                 <h6>Personal Information</h6>
                             </div>
@@ -75,7 +75,7 @@
                                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Enter Email" TextMode="Email" required="required"></asp:TextBox>
                                 </div>
                             </div>
-                            <%-- <div class="col-12">
+                           <%-- <div class="col-12">
                                 <div class="form-group">
                                     <asp:Label ID="Label8" runat="server" Text="Contry"></asp:Label>
                                     <asp:DropDownList ID="ddlContry" runat="server" DataSourceID="SqlDataSource1" CssClass="from-control w-100"
@@ -165,7 +165,8 @@
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
                                 </div>
-                                <a href="Register.aspx" class="btn head-btn1">Register</a> <a href="Login.aspx" class="btn head-btn2">Login</a>
+                                    <a href="Register.aspx" class="btn head-btn1">Register</a> <a href="Login.aspx" class="btn head-btn2">Login</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -361,7 +362,7 @@
 </asp:Content>
 
 
-<%--<div class="container pt-5 pb-5">
+ <%--<div class="container pt-5 pb-5">
         <div class="main-body">
             <asp:DataList ID="dlprofile" Width="100%" runat="server">
                 <ItemTemplate>

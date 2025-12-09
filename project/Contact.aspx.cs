@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -35,7 +38,7 @@ namespace project
             if (!IsPostBack)
             {
                 lblmsg.Visible = false;
-            }
+        }
         }
 
         protected void btbSend_Click(object sender, EventArgs e)
@@ -75,7 +78,7 @@ namespace project
             {
                 ShowError("Database connection is not configured. Please update web.config.");
                 return;
-            }
+        }
 
             try
             {
@@ -85,7 +88,7 @@ namespace project
                         INSERT INTO Contact_tbl (Name, Email, Subject, Message, CreatedAt)
                         VALUES (@Name, @Email, @Subject, @Message, @CreatedAt)";
                     using (var cmd = new SqlCommand(sql, con))
-                    {
+        {
                         cmd.Parameters.AddWithValue("@Name", name);
                         cmd.Parameters.AddWithValue("@Email", email);
                         cmd.Parameters.AddWithValue("@Subject", subject);
@@ -130,15 +133,21 @@ namespace project
         protected void btn1_Click(object sender, EventArgs e)
         {
             if (btn1.Text == "Profile")
+            {
                 Response.Redirect("Profile.aspx");
+            }
             else
+            {
                 Response.Redirect("Register.aspx");
+            }
         }
 
         protected void btn2_Click(object sender, EventArgs e)
         {
             if (btn2.Text == "Login")
+            {
                 Response.Redirect("Login.aspx");
+            }
             else
             {
                 Session.Abandon();

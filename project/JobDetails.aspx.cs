@@ -7,12 +7,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace project
 {
 
     public partial class JobDetails : System.Web.UI.Page
     {
+        SqlConnection con;
+        Class1 cs;
 
         string conStr = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
@@ -22,13 +26,16 @@ namespace project
             {
                 LoadHeaderButtons();
 
-                int jobid = Convert.ToInt32(Request.QueryString["id"]);
+            int jobid = Convert.ToInt32(Request.QueryString["id"]);
                 LoadJobDetails(jobid);
 
                 if (Session["userid"] != null)
-                {
+            {
                     CheckAlreadyApplied(jobid, Convert.ToInt32(Session["userid"]));
-                }
+            }
+            else
+            {
+                ApplyJob.Text = "Apply Now";
             }
         }
 
@@ -100,7 +107,7 @@ namespace project
                     lblEmail.Text = dr["Email"].ToString();
                 }
                 con.Close();
-            }
+        }
         }
 
         // ---------------------------- FORMAT AS UL LIST ----------------------------
@@ -116,7 +123,7 @@ namespace project
                 if (!string.IsNullOrWhiteSpace(item))
                 {
                     html += "<li>" + item.Trim() + "</li>";
-                }
+        }
             }
 
             html += "</ul>";
@@ -139,17 +146,10 @@ namespace project
                 con.Close();
 
                 if (count > 0)
-                {
+            {
                     ApplyJob.Text = "Applied";
-                    ApplyJob.Enabled = false;
-                }
+                ApplyJob.Enabled = false;
             }
-        }
-
-        // ---------------------------- APPLY BUTTON ----------------------------
-        protected void ApplyJob_Click(object sender, EventArgs e)
-        {
-            if (Session["userid"] == null)
             {
                 Response.Redirect("Login.aspx");
                 return;
@@ -171,7 +171,7 @@ namespace project
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-            }
+        }
 
             lblmsg.Visible = true;
             ApplyJob.Text = "Applied";
@@ -182,15 +182,21 @@ namespace project
         protected void btn1_Click(object sender, EventArgs e)
         {
             if (btn1.Text == "Profile")
+            {
                 Response.Redirect("Profile.aspx");
+            }
             else
+            {
                 Response.Redirect("Register.aspx");
+            }
         }
 
         protected void btn2_Click(object sender, EventArgs e)
         {
             if (btn2.Text == "Login")
+            {
                 Response.Redirect("Login.aspx");
+            }
             else
             {
                 Session.Abandon();
