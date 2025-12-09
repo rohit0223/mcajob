@@ -1,0 +1,5 @@
+﻿ALTER TABLE Job_tbl
+ADD CONSTRAINT FK_Job_Employer
+FOREIGN KEY (EmployerId)
+REFERENCES Employers_tbl(EmployerId)
+ON DELETE CASCADE;

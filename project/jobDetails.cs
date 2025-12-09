@@ -12,8 +12,8 @@ namespace project
     {
         SqlConnection con;
         SqlCommand cmd;
-        SqlDataAdapter da;
-        DataSet ds;
+        //SqlDataAdapter da;
+        //DataSet ds;
         string s = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
         public SqlConnection getcon()

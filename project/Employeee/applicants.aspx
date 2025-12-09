@@ -1,6 +1,60 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Employeee/emp.Master" AutoEventWireup="true" CodeBehind="applicants.aspx.cs" Inherits="mca.Employeee.applicants" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .app-btn-primary {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .app-btn-primary:hover {
+                background: #004578;
+            }
+
+        .app-btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .app-btn-outline:hover {
+                background: var(--bg-color);
+            }
+
+        .applicant-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .status-badge {
+            padding: 6px 10px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: .78rem;
+            text-transform: capitalize;
+        }
+
+            .status-badge.pending {
+                background: #fff5eb;
+                color: #f2994a;
+            }
+
+            .status-badge.hired {
+                background: #eaf9f2;
+                color: #27ae60;
+            }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
     <main class="main-content">
@@ -10,117 +64,46 @@
                 <p>Review, rate, and manage all candidates in your pipeline.</p>
             </header>
 
-            <div class="applicant-list-container">
+            <asp:Repeater ID="rptApplicants" runat="server" OnItemCommand="rptApplicants_ItemCommand">
+                <ItemTemplate>
+                    <div class="applicant-card">
+                        <div class="applicant-header">
+                            <!-- avatar color from DB -->
+                            <div class="applicant-avatar" style='background-color: <%# Eval("AvatarColor") %>;'>
+                                <%# GetInitials(Eval("Name")) %>
+                            </div>
 
-                <div class="applicant-card">
-                    <div class="applicant-header">
-                        <div class="applicant-avatar">AJ</div>
-                        <div class="applicant-info">
-                            <h3 class="applicant-name">Alex Johnson</h3>
-                            <p class="applicant-role">Applying for: <strong>Senior Frontend Developer</strong></p>
+                            <div class="applicant-info">
+                                <h3 class="applicant-name"><%# Eval("Name") %></h3>
+                                <p class="applicant-role">Applying for: <strong><%# Eval("Title") %></strong></p>
+
+                                <div class="applicant-meta">
+                                    <span class="applied-email">Email: <%# Eval("Email") %></span><br />
+                                    <span class="applied-date">Applied: <%# Eval("AppliedAt", "{0:yyyy-MM-dd}") %>                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- right-aligned status badge (lowercased for CSS matching) -->
+                            <div class="applicant-status-wrap">
+                                <span class='status-badge <%# DataBinder.Eval(Container.DataItem, "Status").ToString().ToLower() %>'>
+                                    <%# Eval("Status") %>
+                                </span>
+                            </div>
                         </div>
-                        <span class="status pending">Pending</span>
-                    </div>
-                    <div class="applicant-details">
-                        <span>
-                            <svg width="16" height="16">
-                                <use href="#icon-calendar"></use>
-                            </svg>
-                            Applied: 2025-11-03</span>
-                        <span>
-                            <svg width="16" height="16">
-                                <use href="#icon-mail"></use>
-                            </svg>
-                            alex.j@example.com</span>
-                    </div>
-                    <div class="applicant-actions">
-                        <button>View Profile</button>
-                        <button>Message</button>
-                    </div>
-                </div>
 
-                <div class="applicant-card">
-                    <div class="applicant-header">
-                        <div class="applicant-avatar" style="background-color: #c92a2a;">MG</div>
-                        <div class="applicant-info">
-                            <h3 class="applicant-name">Maria Garcia</h3>
-                            <p class="applicant-role">Applying for: <strong>UX/UI Designer</strong></p>
+                        <div class="applicant-actions">
+                            <asp:LinkButton ID="lnkViewProfile" runat="server" CommandName="ViewProfile"
+                                CommandArgument='<%# Eval("UserId") %>' CssClass="app-btn-outline">View Profile</asp:LinkButton>
+
+                            <asp:LinkButton ID="lnkMessage" runat="server" CommandName="Message"
+                                CommandArgument='<%# Eval("UserId") %>' CssClass="app-btn-primary">Message</asp:LinkButton>
                         </div>
-                        <span class="status interview">Interview</span>
                     </div>
-                    <div class="applicant-details">
-                        <span>
-                            <svg width="16" height="16">
-                                <use href="#icon-calendar"></use>
-                            </svg>
-                            Applied: 2025-11-02</span>
-                        <span>
-                            <svg width="16" height="16">
-                                <use href="#icon-mail"></use>
-                            </svg>
-                            maria.g@example.com</span>
-                    </div>
-                    <div class="applicant-actions">
-                        <button>View Profile</button>
-                        <button>Message</button>
-                    </div>
-                </div>
+                </ItemTemplate>
+            </asp:Repeater>
 
-                <div class="applicant-card">
-                    <div class="applicant-header">
-                        <div class="applicant-avatar" style="background-color: #27ae60;">DK</div>
-                        <div class="applicant-info">
-                            <h3 class="applicant-name">David Kim</h3>
-                            <p class="applicant-role">Applying for: <strong>Full-Stack Engineer</strong></p>
-                        </div>
-                        <span class="status hired">Hired</span>
-                    </div>
-                    <div class="applicant-details">
-                        <span>
-                            <svg width="16" height="16">
-                                <use href="#icon-calendar"></use>
-                            </svg>
-                            Applied: 2025-11-01</span>
-                        <span>
-                            <svg width="16" height="16">
-                                <use href="#icon-mail"></use>
-                            </svg>
-                            david.kim@example.com</span>
-                    </div>
-                    <div class="applicant-actions">
-                        <button>View Profile</button>
-                        <button>Message</button>
-                    </div>
-                </div>
+            <asp:Literal ID="litApplicantsEmpty" runat="server" EnableViewState="false" />
 
-                <div class="applicant-card">
-                    <div class="applicant-header">
-                        <div class="applicant-avatar" style="background-color: #f2994a;">SC</div>
-                        <div class="applicant-info">
-                            <h3 class="applicant-name">Sarah Chen</h3>
-                            <p class="applicant-role">Applying for: <strong>Product Manager</strong></p>
-                        </div>
-                        <span class="status interview">Interview</span>
-                    </div>
-                    <div class="applicant-details">
-                        <span>
-                            <svg width="16" height="16">
-                                <use href="#icon-calendar"></use>
-                            </svg>
-                            Applied: 2025-11-01</span>
-                        <span>
-                            <svg width="16" height="16">
-                                <use href="#icon-mail"></use>
-                            </svg>
-                            sarah.c@example.com</span>
-                    </div>
-                    <div class="applicant-actions">
-                        <button>View Profile</button>
-                        <button>Message</button>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </main>
 </asp:Content>

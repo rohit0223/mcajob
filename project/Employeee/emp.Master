@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pro Recruiter Dashboard</title>
-    <link rel="stylesheet" href="~/employeee/assets/css/style.css">
+    <link runat="server" rel="stylesheet" href="~/Employeee/assets/css/style.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -79,17 +79,22 @@
                                 </svg>
                             </button>
                             <a rel="jobpost" href="jobpost.aspx" class="post-job-btn" id="post-job-btn" style="text-decoration: none;">Post a New Job</a>
-                            <div class="profile-menu">
-                                <div class="profile-avatar" id="profile-avatar">AD</div>
-                                <div class="profile-dropdown" id="profile-dropdown">
-                                    <a href="#">Signed in as <strong>Recruiter</strong></a>
+                            <div class="profile-menu" id="profileMenu" runat="server">
+                                <button type="button"
+                                    id="profileToggle"
+                                    class="profile-avatar"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <%: (Session["username"] != null ? Session["username"].ToString().Substring(0,1).ToUpper() : "A") %>
+                                </button>
+
+                                <div class="profile-dropdown" id="profileDropdown" role="menu" aria-hidden="true">
+                                    <a class="profile-dropdown-link" href="~/Employeee/emp_profile.aspx">Profile</a>
                                     <div class="divider"></div>
-                                    <a href="#">Your Profile</a>
-                                    <a href="#">Settings</a>
-                                    <div class="divider"></div>
-                                    <a href="#">Logout</a>
+                                    <a class="profile-dropdown-link" href="~/Logout.aspx">Logout</a>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="mobile-nav-menu" id="mobile-nav-menu">

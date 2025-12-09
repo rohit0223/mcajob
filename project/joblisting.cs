@@ -11,7 +11,7 @@ namespace project
     public class joblisting
     {
         SqlConnection con;
-        SqlCommand cmd;
+        //SqlCommand cmd;
         SqlDataAdapter da;
         DataSet ds;
         string s = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
